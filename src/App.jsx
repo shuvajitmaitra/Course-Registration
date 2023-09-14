@@ -13,6 +13,7 @@ function App() {
   const [course, setCourse] = useState([]);
   const [credit, setCredit] = useState(0);
   const [remaining, setRemaining] = useState(20);
+  const [cost, setCost] = useState(0);
 
   useEffect(() => {
     fetch("data.json")
@@ -22,6 +23,7 @@ function App() {
 
   const handleSelectButton = (card) => {
     let count = card.credit;
+    let costCount = card.price;
     const newTitle = [...course, card];
 
     if (course.find((item) => item.id === card.id)) {
@@ -38,6 +40,7 @@ function App() {
     } else {
       course.forEach((item) => {
         count = count + item.credit;
+        costCount = costCount + item.price;
       });
       const remaining = 20 - count;
       if (count > 20) {
@@ -55,6 +58,7 @@ function App() {
         setRemaining(remaining);
         setCourse(newTitle);
         setCredit(count);
+        setCost(costCount);
       }
     }
   };
@@ -68,7 +72,12 @@ function App() {
       <div className="flex flex-col md:flex-row justify-center  gap-6 ">
         <Cards cards={cards} handleSelectButton={handleSelectButton}></Cards>
 
-        <Carts course={course} credit={credit} remaining={remaining}></Carts>
+        <Carts
+          course={course}
+          credit={credit}
+          remaining={remaining}
+          cost={cost}
+        ></Carts>
       </div>
       <ToastContainer />
     </div>
