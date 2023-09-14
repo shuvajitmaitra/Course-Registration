@@ -12,6 +12,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [course, setCourse] = useState([]);
   const [credit, setCredit] = useState(0);
+  const [remaining, setRemaining] = useState(20);
 
   useEffect(() => {
     fetch("data.json")
@@ -38,6 +39,7 @@ function App() {
       course.forEach((item) => {
         count = count + item.credit;
       });
+      const remaining = 20 - count;
       if (count > 20) {
         return toast.warn("limit reach", {
           position: "top-center",
@@ -50,6 +52,7 @@ function App() {
           theme: "light",
         });
       } else {
+        setRemaining(remaining);
         setCourse(newTitle);
         setCredit(count);
       }
@@ -65,7 +68,7 @@ function App() {
       <div className="flex flex-col lg:flex-row justify-center  gap-6">
         <Cards cards={cards} handleSelectButton={handleSelectButton}></Cards>
 
-        <Carts course={course} credit={credit}></Carts>
+        <Carts course={course} credit={credit} remaining={remaining}></Carts>
       </div>
       <ToastContainer />
     </div>
