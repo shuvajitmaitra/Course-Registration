@@ -25,7 +25,7 @@ function App() {
     const newTitle = [...course, card];
 
     if (course.find((item) => item.id === card.id)) {
-      return toast.error("Try to take same course", {
+      return toast.warn("Try to enroll same course", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -41,7 +41,7 @@ function App() {
       });
       const remaining = 20 - count;
       if (count > 20) {
-        return toast.warn("limit reach", {
+        return toast.error("Credit hour limit reach", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -60,12 +60,12 @@ function App() {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="max-w-screen-xl mx-auto">
       <h1 className="text-4xl text-center font-bold my-10">
         Course Registration
       </h1>
 
-      <div className="flex flex-col lg:flex-row justify-center  gap-6">
+      <div className="flex flex-col md:flex-row justify-center  gap-6 ">
         <Cards cards={cards} handleSelectButton={handleSelectButton}></Cards>
 
         <Carts course={course} credit={credit} remaining={remaining}></Carts>

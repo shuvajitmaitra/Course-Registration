@@ -4,23 +4,23 @@ import { GoBook } from "react-icons/go";
 const Card = ({ card, handleSelectButton }) => {
   const { image, title, price, credit, description } = card;
   return (
-    <div className=" p-6 rounded-lg shadow-md bg-white mx-4 lg:mx-0">
+    <div className=" p-6 rounded-lg shadow-md bg-white mx-4 md:mx-0">
       <div className="flex justify-center">
-        <img src={image} className="w-full" />
+        <img src={image} className="xl:w-full" />
       </div>
 
       <h1 className="text-base font-bold py-4">{title}</h1>
 
       <p className="text-[#1C1B1B99] ">{description}</p>
 
-      <div className="flex justify-evenly items-center py-4 font-semibold">
+      <div className="flex justify-evenly items-center py-4  font-semibold">
         <BsCurrencyDollar />
 
         <p className="text-[#1C1B1B99]">Price: {price}</p>
 
         <GoBook />
 
-        <p className="text-[#1C1B1B99]"> Credit: {credit}hr</p>
+        <p className="text-[#1C1B1B99]">Credit: {credit}hr</p>
       </div>
       <div className="flex justify-center">
         <button
