@@ -4,7 +4,7 @@ import { GoBook } from "react-icons/go";
 const Card = ({ card, handleSelectButton }) => {
   const { image, title, price, credit, description } = card;
   return (
-    <div className="border-2 border-black p-6 rounded-lg shadow-md bg-white mx-4 lg:mx-0">
+    <div className=" p-6 rounded-lg shadow-md bg-white mx-4 lg:mx-0">
       <div className="flex justify-center">
         <img src={image} className="w-full" />
       </div>
