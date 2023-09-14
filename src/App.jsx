@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [cards, setCards] = useState([]);
   const [course, setCourse] = useState([]);
-  const [cost, setCost] = useState(0);
+  const [credit, setCredit] = useState(0);
 
   useEffect(() => {
     fetch("data.json")
@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   const handleSelectButton = (card) => {
-    let count = card.price;
+    let count = card.credit;
     const newTitle = [...course, card];
 
     if (course.find((item) => item.id === card.id)) {
@@ -35,14 +35,25 @@ function App() {
         theme: "light",
       });
     } else {
-      setCourse(newTitle);
+      course.forEach((item) => {
+        count = count + item.credit;
+      });
+      if (count > 20) {
+        return toast.warn("limit reach", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        setCourse(newTitle);
+        setCredit(count);
+      }
     }
-
-    course.forEach((item) => {
-      count += item.price;
-    });
-    console.log(cost);
-    setCost(count);
   };
 
   return (
@@ -54,7 +65,7 @@ function App() {
       <div className="flex flex-col lg:flex-row justify-center  gap-6">
         <Cards cards={cards} handleSelectButton={handleSelectButton}></Cards>
 
-        <Carts course={course}></Carts>
+        <Carts course={course} credit={credit}></Carts>
       </div>
       <ToastContainer />
     </div>

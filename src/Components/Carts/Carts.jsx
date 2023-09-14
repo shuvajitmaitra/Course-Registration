@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const Carts = ({ course }) => {
+const Carts = ({ course, credit }) => {
   //   console.log(course);
   return (
     <div className=" w-1/4 bg-white rounded-lg py-6">
@@ -18,7 +18,7 @@ const Carts = ({ course }) => {
       </ul>
 
       <p className="text-lg font-bold mx-8 pt-2 border-t-2 border-[#1C1B1B99]">
-        Total Credit Hour: 7
+        Total Credit Hour: {credit}
       </p>
     </div>
   );
@@ -26,6 +26,7 @@ const Carts = ({ course }) => {
 
 Carts.propTypes = {
   course: PropTypes.array.isRequired,
+  credit: PropTypes.number.isRequired,
 };
 
 export default Carts;
