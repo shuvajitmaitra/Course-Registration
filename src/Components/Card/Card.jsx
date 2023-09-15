@@ -9,18 +9,22 @@ const Card = ({ card, handleSelectButton }) => {
         <img src={image} className="xl:w-full" />
       </div>
 
-      <h1 className="text-base font-bold py-4">{title}</h1>
+      <h1 className="text-base font-bold pt-4">{title}</h1>
 
-      <p className="text-[#1C1B1B99] ">{description}</p>
+      <p className="text-[#1C1B1B99] pt-2">{description}</p>
 
-      <div className="flex justify-evenly items-center py-4  font-semibold">
-        <BsCurrencyDollar />
+      <div className="flex justify-between items-center py-2 ">
+        <div className="flex items-center gap-2 font-semibold">
+          <BsCurrencyDollar />
 
-        <p className="text-[#1C1B1B99]">Price: {price}</p>
+          <p className="text-[#1C1B1B99]">Price: {price}</p>
+        </div>
 
-        <GoBook />
+        <div className="flex items-center gap-2 font-semibold ">
+          <GoBook />
 
-        <p className="text-[#1C1B1B99]">Credit: {credit}hr</p>
+          <p className="text-[#1C1B1B99]">Credit: {credit}hr</p>
+        </div>
       </div>
       <div className="flex justify-center">
         <button
